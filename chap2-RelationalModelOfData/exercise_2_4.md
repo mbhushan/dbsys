@@ -1,7 +1,6 @@
 a) What PC models have a speed of at least 3.00?
-
-mysql> select * from PC where speed >= 3.0;
 ``` sql
+mysql> select * from PC where speed >= 3.0;
 +-------+-------+------+------+-------+
 | model | speed | ram  | hd   | price |
 +-------+-------+------+------+-------+
@@ -12,6 +11,19 @@ mysql> select * from PC where speed >= 3.0;
 ```
 
 b) Which manufacturers make laptops with a hard disk of at least 100GB?
+``` sql
+mysql> select maker, model from product where model in (select model from laptop where hd >= 100);
++-------+-------+
+| maker | model |
++-------+-------+
+| A     | 2005  |
+| B     | 2007  |
+| E     | 2001  |
+| F     | 2008  |
+| G     | 2010  |
++-------+-------+
+5 rows in set (0.04 sec)
+```
 
 c) Find the model number and price of all products (of any type) made by
 manufacturer B.
