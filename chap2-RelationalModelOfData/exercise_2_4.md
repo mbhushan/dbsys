@@ -25,8 +25,20 @@ mysql> select maker, model from product where model in (select model from laptop
 5 rows in set (0.04 sec)
 ```
 
-c) Find the model number and price of all products (of any type) made by
-manufacturer B.
+c) Find the model number and price of all products (of any type) made by manufacturer B.
+```sql
+mysql> (select  model, price from PC where model in (select model from product where maker='B')) union (select  model, price from laptop where model in (select model from product where maker='B')) union (select  model, price from printer where model in (select model from product where maker='B'))
+    -> ;
+    +-------+-------+
+    | model | price |
+    +-------+-------+
+    | 1004  |   649 |
+    | 1005  |   630 |
+    | 1006  |  1049 |
+    | 2007  |  1429 |
+    +-------+-------+
+    4 rows in set (0.04 sec)
+```
 
 d) Find the model numbers of all color laser printers.
 
